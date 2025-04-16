@@ -3,16 +3,18 @@ const path = require('path');
 const indexRouter = require('./routes/index');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 // update the port to 3000
 
-// Parse JSON request bodies
+// Middleware setup - order matters!
+// 1. Parse JSON request bodies
 app.use(express.json());
-
-// Serve static files from the "public" directory
+// 2. Parse URL-encoded bodies
+app.use(express.urlencoded({ extended: true }));
+// 3. Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Use the router for handling routes
+// Routes
 app.use('/', indexRouter);
 
 // Catch-all route for handling 404 errors

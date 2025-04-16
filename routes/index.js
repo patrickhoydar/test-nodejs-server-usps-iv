@@ -43,14 +43,18 @@ router.get('/', (req, res) => {
 
 // Protected POST endpoint
 router.post('/', basicAuth, (req, res) => {
+  console.log('POST request received');
+  console.log('Request body:', req.body);
   try {
     const data = req.body;
+    console.log('Processing data:', data);
     res.status(200).json({
       success: true,
       message: 'Request processed successfully',
       data: data
     });
   } catch (error) {
+    console.error('Error processing request:', error);
     res.status(500).json({
       success: false,
       message: 'An error occurred while processing the request',
