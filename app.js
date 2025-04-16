@@ -4,6 +4,7 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 const PORT = 3000;
+// update the port to 3000
 
 // Parse JSON request bodies
 app.use(express.json());
